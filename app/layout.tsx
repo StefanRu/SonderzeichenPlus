@@ -6,8 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "ISO 8859-15 Reference",
-  description: "Browse and search all characters in the ISO 8859-15 (Latin-9) character set.",
+  title: "Sonderzeichen Plus Plus",
+  description: "Zeigt alle Variationen eines Buchstaben an.",
     generator: 'v0.dev'
 }
 
