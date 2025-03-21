@@ -1,214 +1,234 @@
-export interface ISO885915Character {
+export type CharacterVariation = {
   char: string
-  codePoint: number
   name: string
-  description: string
+  htmlEntity?: string
+  unicodePoint?: string
 }
 
-// Helper function to get the base letter for grouping
-function getBaseLetter(char: string): string {
-  // This simplified approach works for most Latin letters
-  return char.normalize("NFD")[0].toLowerCase()
+export type CharacterGroup = {
+  base: string
+  variations: CharacterVariation[]
 }
 
-// Create arrays for capital and small letters
-const capitalLetters: ISO885915Character[] = [
-  // Basic Latin capital letters A-Z (65-90)
-  ...Array.from({ length: 26 }, (_, i) => ({
-    char: String.fromCodePoint(65 + i),
-    codePoint: 65 + i,
-    name: `Latin Capital Letter ${String.fromCodePoint(65 + i)}`,
-    description: `Uppercase letter ${String.fromCodePoint(65 + i)}`,
-  })),
-
-  // Special Latin capital letters
-  { char: "À", codePoint: 192, name: "Latin Capital Letter A with Grave", description: "Capital A with grave accent" },
-  { char: "Á", codePoint: 193, name: "Latin Capital Letter A with Acute", description: "Capital A with acute accent" },
+// Only include characters that have variations
+export const uppercaseLetters: CharacterGroup[] = [
   {
-    char: "Â",
-    codePoint: 194,
-    name: "Latin Capital Letter A with Circumflex",
-    description: "Capital A with circumflex",
+    base: "A",
+    variations: [
+      { char: "À", name: "A grave", htmlEntity: "&Agrave;", unicodePoint: "U+00C0" },
+      { char: "Á", name: "A acute", htmlEntity: "&Aacute;", unicodePoint: "U+00C1" },
+      { char: "Â", name: "A circumflex", htmlEntity: "&Acirc;", unicodePoint: "U+00C2" },
+      { char: "Ã", name: "A tilde", htmlEntity: "&Atilde;", unicodePoint: "U+00C3" },
+      { char: "Ä", name: "A umlaut", htmlEntity: "&Auml;", unicodePoint: "U+00C4" },
+      { char: "Å", name: "A ring", htmlEntity: "&Aring;", unicodePoint: "U+00C5" },
+      { char: "Æ", name: "AE ligature", htmlEntity: "&AElig;", unicodePoint: "U+00C6" },
+    ],
   },
-  { char: "Ã", codePoint: 195, name: "Latin Capital Letter A with Tilde", description: "Capital A with tilde" },
-  { char: "Ä", codePoint: 196, name: "Latin Capital Letter A with Diaeresis", description: "Capital A with diaeresis" },
   {
-    char: "Å",
-    codePoint: 197,
-    name: "Latin Capital Letter A with Ring Above",
-    description: "Capital A with ring above",
+    base: "C",
+    variations: [
+      { char: "Ç", name: "C cedilla", htmlEntity: "&Ccedil;", unicodePoint: "U+00C7" },
+      { char: "Ć", name: "C acute", htmlEntity: "&#262;", unicodePoint: "U+0106" },
+      { char: "Č", name: "C caron", htmlEntity: "&#268;", unicodePoint: "U+010C" },
+    ],
   },
-  { char: "Æ", codePoint: 198, name: "Latin Capital Letter AE", description: "Capital AE ligature" },
-  { char: "Ç", codePoint: 199, name: "Latin Capital Letter C with Cedilla", description: "Capital C with cedilla" },
-  { char: "È", codePoint: 200, name: "Latin Capital Letter E with Grave", description: "Capital E with grave accent" },
-  { char: "É", codePoint: 201, name: "Latin Capital Letter E with Acute", description: "Capital E with acute accent" },
   {
-    char: "Ê",
-    codePoint: 202,
-    name: "Latin Capital Letter E with Circumflex",
-    description: "Capital E with circumflex",
+    base: "D",
+    variations: [
+      { char: "Ð", name: "Eth", htmlEntity: "&ETH;", unicodePoint: "U+00D0" },
+      { char: "Đ", name: "D stroke", htmlEntity: "&#272;", unicodePoint: "U+0110" },
+    ],
   },
-  { char: "Ë", codePoint: 203, name: "Latin Capital Letter E with Diaeresis", description: "Capital E with diaeresis" },
-  { char: "Ì", codePoint: 204, name: "Latin Capital Letter I with Grave", description: "Capital I with grave accent" },
-  { char: "Í", codePoint: 205, name: "Latin Capital Letter I with Acute", description: "Capital I with acute accent" },
   {
-    char: "Î",
-    codePoint: 206,
-    name: "Latin Capital Letter I with Circumflex",
-    description: "Capital I with circumflex",
+    base: "E",
+    variations: [
+      { char: "È", name: "E grave", htmlEntity: "&Egrave;", unicodePoint: "U+00C8" },
+      { char: "É", name: "E acute", htmlEntity: "&Eacute;", unicodePoint: "U+00C9" },
+      { char: "Ê", name: "E circumflex", htmlEntity: "&Ecirc;", unicodePoint: "U+00CA" },
+      { char: "Ë", name: "E umlaut", htmlEntity: "&Euml;", unicodePoint: "U+00CB" },
+      { char: "Ě", name: "E caron", htmlEntity: "&#282;", unicodePoint: "U+011A" },
+    ],
   },
-  { char: "Ï", codePoint: 207, name: "Latin Capital Letter I with Diaeresis", description: "Capital I with diaeresis" },
-  { char: "Ð", codePoint: 208, name: "Latin Capital Letter Eth", description: "Capital Eth" },
-  { char: "Ñ", codePoint: 209, name: "Latin Capital Letter N with Tilde", description: "Capital N with tilde" },
-  { char: "Ò", codePoint: 210, name: "Latin Capital Letter O with Grave", description: "Capital O with grave accent" },
-  { char: "Ó", codePoint: 211, name: "Latin Capital Letter O with Acute", description: "Capital O with acute accent" },
   {
-    char: "Ô",
-    codePoint: 212,
-    name: "Latin Capital Letter O with Circumflex",
-    description: "Capital O with circumflex",
+    base: "I",
+    variations: [
+      { char: "Ì", name: "I grave", htmlEntity: "&Igrave;", unicodePoint: "U+00CC" },
+      { char: "Í", name: "I acute", htmlEntity: "&Iacute;", unicodePoint: "U+00CD" },
+      { char: "Î", name: "I circumflex", htmlEntity: "&Icirc;", unicodePoint: "U+00CE" },
+      { char: "Ï", name: "I umlaut", htmlEntity: "&Iuml;", unicodePoint: "U+00CF" },
+    ],
   },
-  { char: "Õ", codePoint: 213, name: "Latin Capital Letter O with Tilde", description: "Capital O with tilde" },
-  { char: "Ö", codePoint: 214, name: "Latin Capital Letter O with Diaeresis", description: "Capital O with diaeresis" },
-  { char: "Ø", codePoint: 216, name: "Latin Capital Letter O with Stroke", description: "Capital O with stroke" },
-  { char: "Œ", codePoint: 188, name: "Latin Capital Ligature OE", description: "Capital ligature OE" },
-  { char: "Š", codePoint: 166, name: "Latin Capital Letter S with Caron", description: "Capital S with caron" },
-  { char: "Ù", codePoint: 217, name: "Latin Capital Letter U with Grave", description: "Capital U with grave accent" },
-  { char: "Ú", codePoint: 218, name: "Latin Capital Letter U with Acute", description: "Capital U with acute accent" },
   {
-    char: "Û",
-    codePoint: 219,
-    name: "Latin Capital Letter U with Circumflex",
-    description: "Capital U with circumflex",
+    base: "N",
+    variations: [
+      { char: "Ñ", name: "N tilde", htmlEntity: "&Ntilde;", unicodePoint: "U+00D1" },
+      { char: "Ň", name: "N caron", htmlEntity: "&#327;", unicodePoint: "U+0147" },
+    ],
   },
-  { char: "Ü", codePoint: 220, name: "Latin Capital Letter U with Diaeresis", description: "Capital U with diaeresis" },
-  { char: "Ý", codePoint: 221, name: "Latin Capital Letter Y with Acute", description: "Capital Y with acute accent" },
-  { char: "Ÿ", codePoint: 190, name: "Latin Capital Letter Y with Diaeresis", description: "Capital Y with diaeresis" },
-  { char: "Þ", codePoint: 222, name: "Latin Capital Letter Thorn", description: "Capital Thorn" },
-  { char: "Ž", codePoint: 180, name: "Latin Capital Letter Z with Caron", description: "Capital Z with caron" },
+  {
+    base: "O",
+    variations: [
+      { char: "Ò", name: "O grave", htmlEntity: "&Ograve;", unicodePoint: "U+00D2" },
+      { char: "Ó", name: "O acute", htmlEntity: "&Oacute;", unicodePoint: "U+00D3" },
+      { char: "Ô", name: "O circumflex", htmlEntity: "&Ocirc;", unicodePoint: "U+00D4" },
+      { char: "Õ", name: "O tilde", htmlEntity: "&Otilde;", unicodePoint: "U+00D5" },
+      { char: "Ö", name: "O umlaut", htmlEntity: "&Ouml;", unicodePoint: "U+00D6" },
+      { char: "Ø", name: "O slash", htmlEntity: "&Oslash;", unicodePoint: "U+00D8" },
+      { char: "Œ", name: "OE ligature", htmlEntity: "&OElig;", unicodePoint: "U+0152" },
+    ],
+  },
+  {
+    base: "R",
+    variations: [{ char: "Ř", name: "R caron", htmlEntity: "&#344;", unicodePoint: "U+0158" }],
+  },
+  {
+    base: "S",
+    variations: [
+      { char: "Š", name: "S caron", htmlEntity: "&#352;", unicodePoint: "U+0160" },
+      { char: "Ś", name: "S acute", htmlEntity: "&#346;", unicodePoint: "U+015A" },
+    ],
+  },
+  {
+    base: "T",
+    variations: [
+      { char: "Þ", name: "Thorn", htmlEntity: "&THORN;", unicodePoint: "U+00DE" },
+      { char: "Ť", name: "T caron", htmlEntity: "&#356;", unicodePoint: "U+0164" },
+    ],
+  },
+  {
+    base: "U",
+    variations: [
+      { char: "Ù", name: "U grave", htmlEntity: "&Ugrave;", unicodePoint: "U+00D9" },
+      { char: "Ú", name: "U acute", htmlEntity: "&Uacute;", unicodePoint: "U+00DA" },
+      { char: "Û", name: "U circumflex", htmlEntity: "&Ucirc;", unicodePoint: "U+00DB" },
+      { char: "Ü", name: "U umlaut", htmlEntity: "&Uuml;", unicodePoint: "U+00DC" },
+      { char: "Ů", name: "U ring", htmlEntity: "&#366;", unicodePoint: "U+016E" },
+    ],
+  },
+  {
+    base: "Y",
+    variations: [
+      { char: "Ý", name: "Y acute", htmlEntity: "&Yacute;", unicodePoint: "U+00DD" },
+      { char: "Ÿ", name: "Y umlaut", htmlEntity: "&Yuml;", unicodePoint: "U+0178" },
+    ],
+  },
+  {
+    base: "Z",
+    variations: [
+      { char: "Ž", name: "Z caron", htmlEntity: "&#381;", unicodePoint: "U+017D" },
+      { char: "Ź", name: "Z acute", htmlEntity: "&#377;", unicodePoint: "U+0179" },
+    ],
+  },
 ]
 
-const smallLetters: ISO885915Character[] = [
-  // Basic Latin small letters a-z (97-122)
-  ...Array.from({ length: 26 }, (_, i) => ({
-    char: String.fromCodePoint(97 + i),
-    codePoint: 97 + i,
-    name: `Latin Small Letter ${String.fromCodePoint(97 + i)}`,
-    description: `Lowercase letter ${String.fromCodePoint(97 + i)}`,
-  })),
-
-  // Special Latin small letters
-  { char: "à", codePoint: 224, name: "Latin Small Letter A with Grave", description: "Small a with grave accent" },
-  { char: "á", codePoint: 225, name: "Latin Small Letter A with Acute", description: "Small a with acute accent" },
-  { char: "â", codePoint: 226, name: "Latin Small Letter A with Circumflex", description: "Small a with circumflex" },
-  { char: "ã", codePoint: 227, name: "Latin Small Letter A with Tilde", description: "Small a with tilde" },
-  { char: "ä", codePoint: 228, name: "Latin Small Letter A with Diaeresis", description: "Small a with diaeresis" },
-  { char: "å", codePoint: 229, name: "Latin Small Letter A with Ring Above", description: "Small a with ring above" },
-  { char: "æ", codePoint: 230, name: "Latin Small Letter AE", description: "Small ae ligature" },
-  { char: "ç", codePoint: 231, name: "Latin Small Letter C with Cedilla", description: "Small c with cedilla" },
-  { char: "è", codePoint: 232, name: "Latin Small Letter E with Grave", description: "Small e with grave accent" },
-  { char: "é", codePoint: 233, name: "Latin Small Letter E with Acute", description: "Small e with acute accent" },
-  { char: "ê", codePoint: 234, name: "Latin Small Letter E with Circumflex", description: "Small e with circumflex" },
-  { char: "ë", codePoint: 235, name: "Latin Small Letter E with Diaeresis", description: "Small e with diaeresis" },
-  { char: "ì", codePoint: 236, name: "Latin Small Letter I with Grave", description: "Small i with grave accent" },
-  { char: "í", codePoint: 237, name: "Latin Small Letter I with Acute", description: "Small i with acute accent" },
-  { char: "î", codePoint: 238, name: "Latin Small Letter I with Circumflex", description: "Small i with circumflex" },
-  { char: "ï", codePoint: 239, name: "Latin Small Letter I with Diaeresis", description: "Small i with diaeresis" },
-  { char: "ð", codePoint: 240, name: "Latin Small Letter Eth", description: "Small eth" },
-  { char: "ñ", codePoint: 241, name: "Latin Small Letter N with Tilde", description: "Small n with tilde" },
-  { char: "ò", codePoint: 242, name: "Latin Small Letter O with Grave", description: "Small o with grave accent" },
-  { char: "ó", codePoint: 243, name: "Latin Small Letter O with Acute", description: "Small o with acute accent" },
-  { char: "ô", codePoint: 244, name: "Latin Small Letter O with Circumflex", description: "Small o with circumflex" },
-  { char: "õ", codePoint: 245, name: "Latin Small Letter O with Tilde", description: "Small o with tilde" },
-  { char: "ö", codePoint: 246, name: "Latin Small Letter O with Diaeresis", description: "Small o with diaeresis" },
-  { char: "ø", codePoint: 248, name: "Latin Small Letter O with Stroke", description: "Small o with stroke" },
-  { char: "œ", codePoint: 189, name: "Latin Small Ligature OE", description: "Small ligature oe" },
-  { char: "ß", codePoint: 223, name: "Latin Small Letter Sharp S", description: "Small sharp s (eszett)" },
-  { char: "š", codePoint: 168, name: "Latin Small Letter S with Caron", description: "Small s with caron" },
-  { char: "ù", codePoint: 249, name: "Latin Small Letter U with Grave", description: "Small u with grave accent" },
-  { char: "ú", codePoint: 250, name: "Latin Small Letter U with Acute", description: "Small u with acute accent" },
-  { char: "û", codePoint: 251, name: "Latin Small Letter U with Circumflex", description: "Small u with circumflex" },
-  { char: "ü", codePoint: 252, name: "Latin Small Letter U with Diaeresis", description: "Small u with diaeresis" },
-  { char: "ý", codePoint: 253, name: "Latin Small Letter Y with Acute", description: "Small y with acute accent" },
-  { char: "ÿ", codePoint: 255, name: "Latin Small Letter Y with Diaeresis", description: "Small y with diaeresis" },
-  { char: "þ", codePoint: 254, name: "Latin Small Letter Thorn", description: "Small thorn" },
-  { char: "ž", codePoint: 184, name: "Latin Small Letter Z with Caron", description: "Small z with caron" },
+export const lowercaseLetters: CharacterGroup[] = [
+  {
+    base: "a",
+    variations: [
+      { char: "à", name: "a grave", htmlEntity: "&agrave;", unicodePoint: "U+00E0" },
+      { char: "á", name: "a acute", htmlEntity: "&aacute;", unicodePoint: "U+00E1" },
+      { char: "â", name: "a circumflex", htmlEntity: "&acirc;", unicodePoint: "U+00E2" },
+      { char: "ã", name: "a tilde", htmlEntity: "&atilde;", unicodePoint: "U+00E3" },
+      { char: "ä", name: "a umlaut", htmlEntity: "&auml;", unicodePoint: "U+00E4" },
+      { char: "å", name: "a ring", htmlEntity: "&aring;", unicodePoint: "U+00E5" },
+      { char: "æ", name: "ae ligature", htmlEntity: "&aelig;", unicodePoint: "U+00E6" },
+    ],
+  },
+  {
+    base: "c",
+    variations: [
+      { char: "ç", name: "c cedilla", htmlEntity: "&ccedil;", unicodePoint: "U+00E7" },
+      { char: "ć", name: "c acute", htmlEntity: "&#263;", unicodePoint: "U+0107" },
+      { char: "č", name: "c caron", htmlEntity: "&#269;", unicodePoint: "U+010D" },
+    ],
+  },
+  {
+    base: "d",
+    variations: [
+      { char: "ð", name: "eth", htmlEntity: "&eth;", unicodePoint: "U+00F0" },
+      { char: "đ", name: "d stroke", htmlEntity: "&#273;", unicodePoint: "U+0111" },
+    ],
+  },
+  {
+    base: "e",
+    variations: [
+      { char: "è", name: "e grave", htmlEntity: "&egrave;", unicodePoint: "U+00E8" },
+      { char: "é", name: "e acute", htmlEntity: "&eacute;", unicodePoint: "U+00E9" },
+      { char: "ê", name: "e circumflex", htmlEntity: "&ecirc;", unicodePoint: "U+00EA" },
+      { char: "ë", name: "e umlaut", htmlEntity: "&euml;", unicodePoint: "U+00EB" },
+      { char: "ě", name: "e caron", htmlEntity: "&#283;", unicodePoint: "U+011B" },
+    ],
+  },
+  {
+    base: "i",
+    variations: [
+      { char: "ì", name: "i grave", htmlEntity: "&igrave;", unicodePoint: "U+00EC" },
+      { char: "í", name: "i acute", htmlEntity: "&iacute;", unicodePoint: "U+00ED" },
+      { char: "î", name: "i circumflex", htmlEntity: "&icirc;", unicodePoint: "U+00EE" },
+      { char: "ï", name: "i umlaut", htmlEntity: "&iuml;", unicodePoint: "U+00EF" },
+    ],
+  },
+  {
+    base: "n",
+    variations: [
+      { char: "ñ", name: "n tilde", htmlEntity: "&ntilde;", unicodePoint: "U+00F1" },
+      { char: "ň", name: "n caron", htmlEntity: "&#328;", unicodePoint: "U+0148" },
+    ],
+  },
+  {
+    base: "o",
+    variations: [
+      { char: "ò", name: "o grave", htmlEntity: "&ograve;", unicodePoint: "U+00F2" },
+      { char: "ó", name: "o acute", htmlEntity: "&oacute;", unicodePoint: "U+00F3" },
+      { char: "ô", name: "o circumflex", htmlEntity: "&ocirc;", unicodePoint: "U+00F4" },
+      { char: "õ", name: "o tilde", htmlEntity: "&otilde;", unicodePoint: "U+00F5" },
+      { char: "ö", name: "o umlaut", htmlEntity: "&ouml;", unicodePoint: "U+00F6" },
+      { char: "ø", name: "o slash", htmlEntity: "&oslash;", unicodePoint: "U+00F8" },
+      { char: "œ", name: "oe ligature", htmlEntity: "&oelig;", unicodePoint: "U+0153" },
+    ],
+  },
+  {
+    base: "r",
+    variations: [{ char: "ř", name: "r caron", htmlEntity: "&#345;", unicodePoint: "U+0159" }],
+  },
+  {
+    base: "s",
+    variations: [
+      { char: "š", name: "s caron", htmlEntity: "&#353;", unicodePoint: "U+0161" },
+      { char: "ś", name: "s acute", htmlEntity: "&#347;", unicodePoint: "U+015B" },
+      { char: "ß", name: "sharp s", htmlEntity: "&szlig;", unicodePoint: "U+00DF" },
+    ],
+  },
+  {
+    base: "t",
+    variations: [
+      { char: "þ", name: "thorn", htmlEntity: "&thorn;", unicodePoint: "U+00FE" },
+      { char: "ť", name: "t caron", htmlEntity: "&#357;", unicodePoint: "U+0165" },
+    ],
+  },
+  {
+    base: "u",
+    variations: [
+      { char: "ù", name: "u grave", htmlEntity: "&ugrave;", unicodePoint: "U+00F9" },
+      { char: "ú", name: "u acute", htmlEntity: "&uacute;", unicodePoint: "U+00FA" },
+      { char: "û", name: "u circumflex", htmlEntity: "&ucirc;", unicodePoint: "U+00FB" },
+      { char: "ü", name: "u umlaut", htmlEntity: "&uuml;", unicodePoint: "U+00FC" },
+      { char: "ů", name: "u ring", htmlEntity: "&#367;", unicodePoint: "U+016F" },
+    ],
+  },
+  {
+    base: "y",
+    variations: [
+      { char: "ý", name: "y acute", htmlEntity: "&yacute;", unicodePoint: "U+00FD" },
+      { char: "ÿ", name: "y umlaut", htmlEntity: "&yuml;", unicodePoint: "U+00FF" },
+    ],
+  },
+  {
+    base: "z",
+    variations: [
+      { char: "ž", name: "z caron", htmlEntity: "&#382;", unicodePoint: "U+017E" },
+      { char: "ź", name: "z acute", htmlEntity: "&#378;", unicodePoint: "U+017A" },
+    ],
+  },
 ]
-
-// Helper function to group characters by their base letter
-export function groupCharactersByBaseLetter(characters: ISO885915Character[]): Record<string, ISO885915Character[]> {
-  const groups: Record<string, ISO885915Character[]> = {}
-
-  characters.forEach((char) => {
-    // Handle special cases
-    let baseLetter = getBaseLetter(char.char)
-
-    // Special handling for ligatures and special characters
-    if (char.char === "Æ" || char.char === "æ") baseLetter = "ae"
-    if (char.char === "Œ" || char.char === "œ") baseLetter = "oe"
-    if (char.char === "Þ" || char.char === "þ") baseLetter = "thorn"
-    if (char.char === "Ð" || char.char === "ð") baseLetter = "eth"
-    if (char.char === "ß") baseLetter = "ss"
-
-    if (!groups[baseLetter]) {
-      groups[baseLetter] = []
-    }
-
-    groups[baseLetter].push(char)
-  })
-
-  return groups
-}
-
-// Group characters
-export const groupedCapitalLetters = groupCharactersByBaseLetter(capitalLetters)
-export const groupedSmallLetters = groupCharactersByBaseLetter(smallLetters)
-
-// Get unique base letters for capital and small letters
-export const capitalBaseLetters = Object.keys(groupedCapitalLetters).sort()
-export const smallBaseLetters = Object.keys(groupedSmallLetters).sort()
-
-// Combine all characters for search functionality
-export const iso885915Characters: ISO885915Character[] = [...capitalLetters, ...smallLetters]
-
-// Helper function to get control character names (kept for reference)
-function getControlCharName(codePoint: number): string {
-  const controlCharNames: Record<number, string> = {
-    0: "NUL",
-    1: "SOH",
-    2: "STX",
-    3: "ETX",
-    4: "EOT",
-    5: "ENQ",
-    6: "ACK",
-    7: "BEL",
-    8: "BS",
-    9: "HT",
-    10: "LF",
-    11: "VT",
-    12: "FF",
-    13: "CR",
-    14: "SO",
-    15: "SI",
-    16: "DLE",
-    17: "DC1",
-    18: "DC2",
-    19: "DC3",
-    20: "DC4",
-    21: "NAK",
-    22: "SYN",
-    23: "ETB",
-    24: "CAN",
-    25: "EM",
-    26: "SUB",
-    27: "ESC",
-    28: "FS",
-    29: "GS",
-    30: "RS",
-    31: "US",
-    127: "DEL",
-  }
-
-  return controlCharNames[codePoint] || "Unknown"
-}
 

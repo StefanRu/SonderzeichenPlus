@@ -1,26 +1,36 @@
 import type React from "react"
-import "@/app/globals.css"
+import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/context/language-context"
+import { Footer } from "@/components/footer"
+import { Toaster } from "@/components/ui/toaster"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], display: "swap" })
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Sonderzeichen Plus Plus",
-  description: "Zeigt alle Variationen eines Buchstaben an.",
+  description: "Special characters from ISO 8859-1 and Latin Extended-A",
     generator: 'v0.dev'
 }
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode
-}) {
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          {children}
+          <LanguageProvider>
+            <div className="flex flex-col min-h-screen">
+              <div className="flex-grow">{children}</div>
+              <Footer />
+            </div>
+            <Toaster />
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>
