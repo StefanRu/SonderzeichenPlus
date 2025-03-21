@@ -12,6 +12,14 @@ const inter = Inter({ subsets: ["latin"], display: "swap" })
 export const metadata: Metadata = {
   title: "Sonderzeichen Plus Plus",
   description: "Special characters from ISO 8859-1 and Latin Extended-A",
+  authors: [{ name: "Stefan Rutz", url: "https://github.com/StefanRu" }],
+  creator: "v0 by Vercel",
+  keywords: ["special characters", "ISO 8859-1", "Latin Extended-A", "Sonderzeichen"],
+  openGraph: {
+    title: "Sonderzeichen Plus Plus",
+    description: "Special characters from ISO 8859-1 and Latin Extended-A",
+    type: "website",
+  },
     generator: 'v0.dev'
 }
 
@@ -24,8 +32,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/favicon.png" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="developer" content="Coded with v0 under the supervision of Stefan Rutz" />
+        <meta name="github" content="https://github.com/StefanRu" />
       </head>
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
