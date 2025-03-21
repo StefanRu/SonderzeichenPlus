@@ -16,18 +16,18 @@ export default function Icon() {
     // ImageResponse JSX element
     <div
       style={{
-        fontSize: 16,
+        fontSize: 24,
+        background: "#FFAF00",
         width: "100%",
         height: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        color: "#FFAF00",
+        color: "black",
         fontWeight: "bold",
-        background: "transparent",
       }}
     >
-      SPP
+      S
     </div>,
     // ImageResponse options
     {
