@@ -31,6 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
         <meta name="developer" content="Coded with v0 under the supervision of Stefan Rutz" />
         <meta name="github" content="https://github.com/StefanRu" />
       </head>
