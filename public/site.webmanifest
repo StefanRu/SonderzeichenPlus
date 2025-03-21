@@ -1,40 +1,20 @@
 {
   "name": "Sonderzeichen Plus Plus",
   "short_name": "SPP",
-  "description": "Special characters from ISO 8859-1 and Latin Extended-A",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#FFAF00",
-  "orientation": "any",
   "icons": [
     {
-      "src": "/favicon.ico",
-      "sizes": "48x48 32x32 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any"
-    },
-    {
-      "src": "/favicon.png",
+      "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png",
-      "purpose": "apple-touch-icon"
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "lang": "en",
-  "dir": "ltr",
-  "categories": ["utilities", "productivity"],
-  "screenshots": [],
-  "shortcuts": []
+  "theme_color": "#FFAF00",
+  "background_color": "#ffffff",
+  "display": "standalone"
 }
 
