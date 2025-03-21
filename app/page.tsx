@@ -1,6 +1,7 @@
 import { CharacterGrid } from "@/components/character-grid"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { ThemeSwitch } from "@/components/theme-switch"
+import { AboutModal } from "@/components/about-modal"
 import { Header } from "@/components/header"
 
 export default function Home() {
@@ -9,6 +10,7 @@ export default function Home() {
       <div className="flex justify-end mb-4 items-center gap-2">
         <LanguageSwitcher />
         <ThemeSwitch />
+        <AboutModal />
       </div>
       <Header />
       <CharacterGrid />
