@@ -9,7 +9,7 @@ export function AboutModal() {
   const { language } = useLanguage()
 
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="sm" className="rounded-full px-4 border-primary/30 hover:border-primary">
           <Info className="h-4 w-4 text-primary" />

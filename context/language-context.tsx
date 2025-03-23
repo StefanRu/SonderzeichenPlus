@@ -117,6 +117,63 @@ const translations: TranslationsType = {
     fr: (count: number, total: number) => `Affichage de ${count} sur ${total} variations`,
     it: (count: number, total: number) => `Mostrando ${count} di ${total} variazioni`,
   },
+  // New translations for favorites and recent characters
+  favorites: {
+    en: "Favorites",
+    de: "Favoriten",
+    ch: "Favorite",
+    fr: "Favoris",
+    it: "Preferiti",
+  },
+  recently_used: {
+    en: "Recently Used",
+    de: "Kürzlich verwendet",
+    ch: "Kürzlig bruucht",
+    fr: "Récemment utilisés",
+    it: "Usati di recente",
+  },
+  clear: {
+    en: "Clear",
+    de: "Löschen",
+    ch: "Lösche",
+    fr: "Effacer",
+    it: "Cancella",
+  },
+  add_to_favorites: {
+    en: "Add to favorites",
+    de: "Zu Favoriten hinzufügen",
+    ch: "Zu Favorite drzue due",
+    fr: "Ajouter aux favoris",
+    it: "Aggiungi ai preferiti",
+  },
+  remove_from_favorites: {
+    en: "Remove from favorites",
+    de: "Aus Favoriten entfernen",
+    ch: "Vo Favorite entfärne",
+    fr: "Retirer des favoris",
+    it: "Rimuovi dai preferiti",
+  },
+  added_to_favorites: {
+    en: "Added to favorites",
+    de: "Zu Favoriten hinzugefügt",
+    ch: "Zu Favorite drzue doo",
+    fr: "Ajouté aux favoris",
+    it: "Aggiunto ai preferiti",
+  },
+  removed_from_favorites: {
+    en: "Removed from favorites",
+    de: "Aus Favoriten entfernt",
+    ch: "Vo Favorite entfärnt",
+    fr: "Retiré des favoris",
+    it: "Rimosso dai preferiti",
+  },
+  cleared_recent: {
+    en: "Cleared recent characters",
+    de: "Kürzlich verwendete Zeichen gelöscht",
+    ch: "Kürzlig bruuchti Zaiche glöscht",
+    fr: "Caractères récents effacés",
+    it: "Caratteri recenti cancellati",
+  },
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)

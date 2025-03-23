@@ -1,6 +1,6 @@
 "use client"
 
-import type { CharacterGroup } from "@/lib/characters"
+import type { CharacterGroup, CharacterVariation } from "@/lib/characters"
 import { CharacterItem } from "@/components/character-item"
 
 interface CharacterSectionProps {
@@ -9,6 +9,9 @@ interface CharacterSectionProps {
   expandedCharacter: string | null
   onCharacterClick: (base: string) => void
   searchTerm?: string
+  onCopyCharacter?: (variation: CharacterVariation) => void
+  onToggleFavorite?: (variation: CharacterVariation) => void
+  favoriteCharacters?: CharacterVariation[]
 }
 
 export function CharacterSection({
@@ -17,6 +20,9 @@ export function CharacterSection({
   expandedCharacter,
   onCharacterClick,
   searchTerm = "",
+  onCopyCharacter,
+  onToggleFavorite,
+  favoriteCharacters = [],
 }: CharacterSectionProps) {
   return (
     <section className="mb-16">
@@ -29,6 +35,9 @@ export function CharacterSection({
             isExpanded={expandedCharacter === char.base}
             onClick={() => onCharacterClick(char.base)}
             searchTerm={searchTerm}
+            onCopyVariation={onCopyCharacter || (() => {})}
+            onToggleFavorite={onToggleFavorite || (() => {})}
+            favoriteCharacters={favoriteCharacters}
           />
         ))}
       </div>

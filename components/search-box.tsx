@@ -3,15 +3,21 @@
 import { useLanguage } from "@/context/language-context"
 import { Input } from "@/components/ui/input"
 import { Search, X } from "lucide-react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 interface SearchBoxProps {
   onSearch: (term: string) => void
+  value?: string
 }
 
-export function SearchBox({ onSearch }: SearchBoxProps) {
+export function SearchBox({ onSearch, value = "" }: SearchBoxProps) {
   const { t } = useLanguage()
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState(value)
+
+  // Update internal state when value prop changes
+  useEffect(() => {
+    setSearchTerm(value)
+  }, [value])
 
   const handleSearch = (value: string) => {
     setSearchTerm(value)
