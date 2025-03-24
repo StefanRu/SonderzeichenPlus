@@ -12,9 +12,10 @@ const MAX_RECENT_CHARS = 10
 
 interface CharacterGridProps {
   searchTerm?: string
+  isCompactMode?: boolean
 }
 
-export function CharacterGrid({ searchTerm = "" }: CharacterGridProps) {
+export function CharacterGrid({ searchTerm = "", isCompactMode = false }: CharacterGridProps) {
   const { t } = useLanguage()
   const { toast } = useToast()
   const [expandedCharacter, setExpandedCharacter] = useState<string | null>(null)
@@ -191,9 +192,9 @@ export function CharacterGrid({ searchTerm = "" }: CharacterGridProps) {
 
   // Render the component
   return (
-    <div className="space-y-8" ref={expandedRef}>
-      {/* Only render QuickAccessSection if there are items to show */}
-      {(recentCharacters.length > 0 || favoriteCharacters.length > 0) && (
+    <div className={`space-y-8 ${isCompactMode ? "space-y-4" : ""}`} ref={expandedRef}>
+      {/* Only render QuickAccessSection if there are items to show and not in compact mode */}
+      {!isCompactMode && (recentCharacters.length > 0 || favoriteCharacters.length > 0) && (
         <QuickAccessSection
           recentCharacters={recentCharacters}
           favoriteCharacters={favoriteCharacters}
@@ -211,7 +212,7 @@ export function CharacterGrid({ searchTerm = "" }: CharacterGridProps) {
 
       {filteredUppercase.length > 0 && (
         <CharacterSection
-          title={t("uppercase")}
+          title={isCompactMode ? "" : t("uppercase")}
           characters={filteredUppercase}
           expandedCharacter={expandedCharacter}
           onCharacterClick={handleCharacterClick}
@@ -219,12 +220,13 @@ export function CharacterGrid({ searchTerm = "" }: CharacterGridProps) {
           onCopyCharacter={handleCopyCharacter}
           onToggleFavorite={handleToggleFavorite}
           favoriteCharacters={favoriteCharacters}
+          isCompactMode={isCompactMode}
         />
       )}
 
       {filteredLowercase.length > 0 && (
         <CharacterSection
-          title={t("lowercase")}
+          title={isCompactMode ? "" : t("lowercase")}
           characters={filteredLowercase}
           expandedCharacter={expandedCharacter}
           onCharacterClick={handleCharacterClick}
@@ -232,6 +234,7 @@ export function CharacterGrid({ searchTerm = "" }: CharacterGridProps) {
           onCopyCharacter={handleCopyCharacter}
           onToggleFavorite={handleToggleFavorite}
           favoriteCharacters={favoriteCharacters}
+          isCompactMode={isCompactMode}
         />
       )}
     </div>

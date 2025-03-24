@@ -12,6 +12,7 @@ interface CharacterSectionProps {
   onCopyCharacter?: (variation: CharacterVariation) => void
   onToggleFavorite?: (variation: CharacterVariation) => void
   favoriteCharacters?: CharacterVariation[]
+  isCompactMode?: boolean
 }
 
 export function CharacterSection({
@@ -23,11 +24,12 @@ export function CharacterSection({
   onCopyCharacter,
   onToggleFavorite,
   favoriteCharacters = [],
+  isCompactMode = false,
 }: CharacterSectionProps) {
   return (
-    <section className="mb-16">
-      <h2 className="section-title">{title}</h2>
-      <div className="flex flex-wrap gap-1">
+    <section className={isCompactMode ? "mb-4" : "mb-16"}>
+      {title && <h2 className="section-title">{title}</h2>}
+      <div className={`flex flex-wrap ${isCompactMode ? "gap-1" : "gap-1"}`}>
         {characters.map((char) => (
           <CharacterItem
             key={char.base}
@@ -38,6 +40,7 @@ export function CharacterSection({
             onCopyVariation={onCopyCharacter || (() => {})}
             onToggleFavorite={onToggleFavorite || (() => {})}
             favoriteCharacters={favoriteCharacters}
+            isCompactMode={isCompactMode}
           />
         ))}
       </div>

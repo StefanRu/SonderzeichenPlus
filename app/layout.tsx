@@ -4,9 +4,9 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/context/language-context"
-import { Footer } from "@/components/footer"
 import { Toaster } from "@/components/ui/toaster"
 import { ConsoleCredits } from "@/components/console-credits"
+import { CompactModeProvider } from "@/context/compact-mode-context"
 
 const inter = Inter({ subsets: ["latin"], display: "swap" })
 
@@ -27,12 +27,13 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LanguageProvider>
-            <div className="flex flex-col min-h-screen">
-              <div className="flex-grow">{children}</div>
-              <Footer />
-            </div>
-            <Toaster />
-            <ConsoleCredits />
+            <CompactModeProvider>
+              <div className="flex flex-col min-h-screen">
+                <div className="flex-grow">{children}</div>
+              </div>
+              <Toaster />
+              <ConsoleCredits />
+            </CompactModeProvider>
           </LanguageProvider>
         </ThemeProvider>
       </body>

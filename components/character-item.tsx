@@ -14,6 +14,7 @@ interface CharacterItemProps {
   onCopyVariation: (variation: CharacterVariation) => void
   onToggleFavorite: (variation: CharacterVariation) => void
   favoriteCharacters: CharacterVariation[]
+  isCompactMode?: boolean
 }
 
 export function CharacterItem({
@@ -24,6 +25,7 @@ export function CharacterItem({
   onCopyVariation,
   onToggleFavorite,
   favoriteCharacters,
+  isCompactMode = false,
 }: CharacterItemProps) {
   const { t } = useLanguage()
 
@@ -96,14 +98,17 @@ export function CharacterItem({
     onToggleFavorite(variation)
   }
 
+  const cardSizeClass = isCompactMode ? "w-10 h-10" : "w-12 h-12"
+  const letterSizeClass = isCompactMode ? "text-xl" : "text-2xl"
+
   return (
     <div className="relative group">
       <div
-        className={`character-card group ${isExpanded ? "expanded" : ""}`}
+        className={`character-card group ${isExpanded ? "expanded" : ""} ${cardSizeClass}`}
         onClick={onClick}
         aria-expanded={isExpanded}
       >
-        <div className="character-letter">{highlightedBase}</div>
+        <div className={`character-letter ${letterSizeClass}`}>{highlightedBase}</div>
       </div>
 
       <div className={`character-variations ${isExpanded ? "opacity-100 visible" : "opacity-0 invisible h-0"}`}>
@@ -111,28 +116,31 @@ export function CharacterItem({
           <div className="flex flex-nowrap gap-2 pb-2">
             {filteredVariations.map((variation) => {
               const inFavorites = isInFavorites(variation.char)
+              const variationSizeClass = isCompactMode ? "w-8 h-8" : "w-10 h-10"
 
               return (
                 <div
                   key={variation.char}
-                  className="variation-item flex-shrink-0 group/item relative"
+                  className={`variation-item flex-shrink-0 group/item relative ${variationSizeClass}`}
                   onClick={(e) => handleCopyVariation(e, variation)}
                 >
-                  <span className="text-lg">{variation.char}</span>
+                  <span className={isCompactMode ? "text-base" : "text-lg"}>{variation.char}</span>
 
-                  <button
-                    className="absolute -top-1 -right-1 opacity-0 group-hover/item:opacity-100 transition-opacity bg-background rounded-full p-0.5 shadow-sm"
-                    onClick={(e) => handleToggleFavorite(e, variation)}
-                    title={
-                      inFavorites
-                        ? t("remove_from_favorites") || "Remove from favorites"
-                        : t("add_to_favorites") || "Add to favorites"
-                    }
-                  >
-                    <Star
-                      className={`h-2.5 w-2.5 ${inFavorites ? "fill-primary text-primary" : "text-muted-foreground"}`}
-                    />
-                  </button>
+                  {!isCompactMode && (
+                    <button
+                      className="absolute -top-1 -right-1 opacity-0 group-hover/item:opacity-100 transition-opacity bg-background rounded-full p-0.5 shadow-sm"
+                      onClick={(e) => handleToggleFavorite(e, variation)}
+                      title={
+                        inFavorites
+                          ? t("remove_from_favorites") || "Remove from favorites"
+                          : t("add_to_favorites") || "Add to favorites"
+                      }
+                    >
+                      <Star
+                        className={`h-2.5 w-2.5 ${inFavorites ? "fill-primary text-primary" : "text-muted-foreground"}`}
+                      />
+                    </button>
+                  )}
 
                   <div
                     className="absolute -bottom-10 left-1/2 -translate-x-1/2 px-2 py-1 rounded bg-popover border shadow-md 
@@ -153,7 +161,7 @@ export function CharacterItem({
               )
             })}
           </div>
-          {searchTerm && filteredVariations.length < character.variations.length && (
+          {searchTerm && filteredVariations.length < character.variations.length && !isCompactMode && (
             <div className="text-xs text-muted-foreground mt-1">
               {typeof t("showing_filtered") === "function"
                 ? t("showing_filtered", { count: filteredVariations.length, total: character.variations.length })

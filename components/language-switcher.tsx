@@ -19,9 +19,13 @@ export function LanguageSwitcher() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="rounded-full px-4 border-primary/30 hover:border-primary">
-          <Globe className="h-4 w-4 mr-2 text-primary" />
-          {languages.find((lang) => lang.code === language)?.name}
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full border-primary/30 hover:border-primary"
+          aria-label={languages.find((lang) => lang.code === language)?.name}
+        >
+          <Globe className="h-4 w-4 text-primary" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

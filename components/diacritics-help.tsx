@@ -226,12 +226,11 @@ export function DiacriticsHelp({ onSelectMark }: DiacriticsHelpProps) {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          size="sm"
-          className="rounded-full px-4 border-primary/30 hover:border-primary"
+          size="icon"
+          className="rounded-full border-primary/30 hover:border-primary"
           aria-label={getHelpText()}
         >
           <HelpCircle className="h-4 w-4 text-primary" />
-          <span className="ml-2">{getHelpText()}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent

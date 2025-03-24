@@ -40,9 +40,13 @@ export function ThemeSwitch() {
 
   if (!mounted) {
     return (
-      <Button variant="outline" size="sm" className="rounded-full px-4 border-primary/30 hover:border-primary">
+      <Button
+        variant="outline"
+        size="icon"
+        className="rounded-full border-primary/30 hover:border-primary"
+        aria-label={themeLabels.system}
+      >
         <Sun className="h-4 w-4 text-primary" />
-        <span className="ml-2">{themeLabels.system}</span>
       </Button>
     )
   }
@@ -50,9 +54,13 @@ export function ThemeSwitch() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="rounded-full px-4 border-primary/30 hover:border-primary">
+        <Button
+          variant="outline"
+          size="icon"
+          className="rounded-full border-primary/30 hover:border-primary"
+          aria-label={themeLabels[theme as keyof typeof themeLabels] || themeLabels.system}
+        >
           {getIcon()}
-          <span className="ml-2">{themeLabels[theme as keyof typeof themeLabels] || themeLabels.system}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">

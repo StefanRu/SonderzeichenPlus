@@ -174,6 +174,20 @@ const translations: TranslationsType = {
     fr: "Caractères récents effacés",
     it: "Caratteri recenti cancellati",
   },
+  about_title: {
+    en: "Special Characters Plus Plus",
+    de: "Sonderzeichen Plus Plus",
+    ch: "Sunderzaiche Plus Plus",
+    fr: "Caractères Spéciaux Plus Plus",
+    it: "Caratteri Speciali Plus Plus",
+  },
+  about_description: {
+    en: "Since January 1, 2024, all personal registers in Switzerland use a uniform character set ISO 8859-1 + Latin Extended-A, so that almost all special characters of European languages - with few exceptions - can be recorded. This was decided by the Federal Council at its meeting on May 12, 2021. This website was developed as an input aid for using the new special characters.",
+    de: "In allen Personenregistern der Schweiz gilt seit dem 1. Januar 2024 ein einheitlicher Zeichensatz ISO 8859-1 + Latin Extended-A, damit nahezu alle Sonderzeichen europäischer Sprachen - mit wenigen Ausnahmen - erfasst werden können. Dies hat der Bundesrat an seiner Sitzung vom 12. Mai 2021 entschieden. Diese Website wurde als Eingabehilfe zur Verwendung der neuen Sonderzeichen entwickelt.",
+    ch: "In alle Personeregischter vo dr Schwiiz gilt sit em 1. Januar 2024 e eiheitliche Zaichesatz ISO 8859-1 + Latin Extended-A, demit fascht alli Sunderzaiche vo europäische Sproche - mit wenige Usnahme - erfasst wärde könne. Das het dr Bundesroot an sinere Sitzig vom 12. Mai 2021 entschide. Die Website isch als Iigobhilf zur Verwändig vo de neue Sunderzaiche entwicklet worde.",
+    fr: "Depuis le 1er janvier 2024, tous les registres personnels en Suisse utilisent un jeu de caractères uniforme ISO 8859-1 + Latin Extended-A, afin que presque tous les caractères spéciaux des langues européennes - à quelques exceptions près - puissent être enregistrés. Le Conseil fédéral en a décidé ainsi lors de sa séance du 12 mai 2021. Ce site web a été développé comme aide à la saisie pour l'utilisation des nouveaux caractères spéciaux.",
+    it: "Dal 1° gennaio 2024, tutti i registri personali in Svizzera utilizzano un set di caratteri uniforme ISO 8859-1 + Latin Extended-A, in modo che quasi tutti i caratteri speciali delle lingue europee - con poche eccezioni - possano essere registrati. Il Consiglio federale ha deciso in tal senso nella sua riunione del 12 maggio 2021. Questo sito web è stato sviluppato come ausilio per l'inserimento dei nuovi caratteri speciali.",
+  },
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined)

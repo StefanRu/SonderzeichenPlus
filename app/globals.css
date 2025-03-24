@@ -73,7 +73,7 @@
 
 .character-card {
   @apply relative flex items-center justify-center p-2 border rounded-md cursor-pointer transition-all duration-200 
-         hover:shadow-md hover:border-primary/50 aspect-square w-12 h-12
+         hover:shadow-md hover:border-primary/50 aspect-square
          bg-white dark:bg-gray-800;
 }
 
@@ -82,7 +82,7 @@
 }
 
 .character-letter {
-  @apply text-2xl font-medium transition-colors;
+  @apply font-medium transition-colors;
 }
 
 .character-variations {
@@ -96,7 +96,7 @@
 .variation-item {
   @apply flex items-center justify-center p-2 border rounded-md cursor-pointer transition-all 
          hover:bg-primary/10 hover:border-primary/50 hover:shadow-sm
-         aspect-square w-10 h-10;
+         aspect-square;
 }
 
 .section-title {
@@ -110,5 +110,22 @@
 /* The orange parts of the logo need to be preserved, so we'll apply a specific filter */
 .dark-logo :global(.st0) {
   filter: invert(1) hue-rotate(180deg);
+}
+
+/* Compact mode styles */
+body.compact-mode {
+  @apply p-0 m-0 overflow-hidden;
+}
+
+body.compact-mode .container {
+  @apply p-1 max-w-full;
+}
+
+body.compact-mode .character-card {
+  @apply p-1;
+}
+
+body.compact-mode .variation-item {
+  @apply p-1;
 }
 
